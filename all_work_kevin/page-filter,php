@@ -1,0 +1,344 @@
+<?php
+
+/**
+ * Template Name:Floor plan 
+
+ */
+ 
+ get_header();
+ 
+
+    $starting_title = get_post_meta( get_the_ID(), 'price', true );
+    $floor_plan = get_post_meta( get_the_ID(), 'floor_plan_sections', true );
+
+ 
+?>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+<div class="fancybox__container" >
+    
+     
+        <h3 class=' floor__title'><?php echo $starting_title?></h3>
+    
+     <p style="text-align: center;  color: #003b4d; margin: 0rem 0 1rem 0;">Homes come in all shapes and sizes at hayloftcottages. Which is the perfect fit for you?</p>
+     
+    <div class="list__container">
+        
+        <p class="rs__list active" data-filter='all'>All</p>
+        <p class="rs__list" data-filter='onebed'>One Bedroom</p>
+        <p class="rs__list" data-filter='twobed'>Two Bedroom</p>
+        <p class="rs__list" data-filter='threebed'>Three Bedroom</p>
+        <!--<p class="rs__list" data-filter='fourobed'>Four Bedroom</p>-->
+        <!--<p class="rs__list" data-filter='fivebed'>Five Bedroom</p>-->
+        <!--<p class="rs__list" data-filter='sixbed'>Six Bedroom</p>-->
+        <!-- <p class="rs__list" data-filter='sevenbed'>Seven Bedroom</p>-->
+        <!--<p class="rs__list" data-filter='eightbed'>Eight Bedroom</p>-->
+
+
+    </div>
+    <div class="fancybox__inner">
+        
+       <?php 
+        
+      foreach((array) $floor_plan as $key => $entry ){ 
+     if(isset($entry['title_1']) || isset($entry['floor_image_image']) || isset($entry['floor_image']) ||isset($entry['title_1']) ||isset($entry['title_2']) ||isset($entry['title_3']) ||isset($entry['title_1'])) {
+         
+
+    ?>
+         
+          <div class="fancy__image__content  <?php echo $entry['title_1']?>">
+               <div class="floor__img__bar .info__top">
+                <p class="bottom__bar__info info__top">Call for Availability</p>
+            </div>
+            <a href="<?php echo $entry['floor_image_image']?>" data-fancybox="images"
+                data-caption="<?php echo $entry['data_caption']?>" title='bedroom'>
+                <img src="<?php echo $entry['floor_image']?>" />
+
+            </a>
+
+            <div class="fancy__box__information">
+                <h6><?php echo $entry['title_2']?></h6>
+                <p><?php echo $entry['title_3']?></p>
+                 <div class="box__underline"></div>
+               
+            </div>
+              <p class = 'starting__heading'>Starting At</p>
+                 <span class= 'starting__price'><?php echo $entry['starting_price']?></span>
+             <div class="icon__container">
+                <div class="inner__icon__container">
+                <i class="fa fa-bed fa-2x" aria-hidden="true"></i>
+                <span class='icon__title'><?php echo $entry['left_icon_title']?></span>
+                </div>
+                <div class="inner__icon__container">
+                <i class="fa fa-bath fa-2x" aria-hidden="true"></i>
+                <span class='icon__title'><?php echo $entry['right_icon_title']?></span>
+                </div>
+
+            </div>
+         
+           
+            <div class="floor__img__bar bottom__bar">
+            <p class="bottom__bar__info"><?php echo $entry['call_title']?></p>
+            </div>
+        </div>
+<?php      } } ?>
+    </div>
+</div>
+
+
+
+
+
+
+<style>
+
+.starting_heading{
+    font-size: 12px;
+}
+.starting__price{
+    font-size: 32px;
+    line-height: 0.7;
+    margin-bottom: 0.5rem;
+}
+.starting__title{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+    .box__underline{
+        width: 150px;;
+        height: 5px;
+        background-color: #003b4d;;
+        margin: 0 auto;
+        margin-top: 1rem;
+    
+    }
+    .icon__container{
+        display:flex;
+        justify-content:space-between;
+        align-items: center;
+        width: 80%;
+        margin: 0 auto;
+        padding-bottom: 0.5rem;
+            margin-top: 0.7rem;
+    }
+    .icon__container i{
+        color: #003b4d;
+        display: inline-block
+    }
+    
+    .icon__title{
+        font-size: 12px;
+        display: inline-block
+
+    }
+    .floor__img__bar{
+        background-color: #003b4d;
+       
+        border-radius: 33px 33px 0 0;
+        height: 50px;
+    }
+    .fancybox__inner .bottom__bar{
+        border-radius:0 0 33px 33px ;
+    }
+    .fancybox__inner .info__top{
+        visibility: hidden;
+       
+    }
+    .bottom__bar__info{
+       padding: 0;
+       margin:0;
+      color: #fff;
+      font-size:26px
+    }
+.floor__title{
+  
+     color: #003b4d;
+    font-size: 50px;
+ text-align: center;
+   font-weight: 700;
+    margin: 3rem 0rem 0 0;
+}
+.fancybox__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0 3rem 0;
+
+
+}
+
+.fancy__image__content {
+    background-color: white;
+    width: 30%;
+    margin:1rem;
+   
+    box-shadow: -2px 4px 18px -2px #003b4d;
+-webkit-box-shadow: -2px 4px 18px -2px #003b4d
+-moz-box-shadow: -2px 4px 18px -2px #003b4d;
+  border-radius: 33px;
+
+}
+
+.fancy__image__content img {
+    width: 100%;
+    height: 45vh;
+    object-fit: cover;
+
+
+}
+
+.fancybox__container {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.fancy__box__information {
+    margin-top: -21px;
+    background-color: #fff;
+    padding: 1.5rem 0 0 0;
+}
+
+.fancy__box__information h6,
+p {
+    color: #000;
+    margin: 0;
+}
+
+.fancy__box__information h6 {
+    font-size: 32px;
+}
+
+.fancy__box__information p {
+    font-size: 18px;
+    line-height: 0.9;
+}
+
+.fancybox {
+    margin: 0;
+
+
+}
+
+.fancybox-thumbs {
+    top: auto;
+    width: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 95px;
+    padding: 10px 10px 5px 10px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.fancybox-show-thumbs .fancybox-inner {
+    right: 0;
+    bottom: 95px;
+}
+
+
+
+.list__container p {
+    color: #000;
+    border: 1px solid #003b4d;
+    margin: 1rem;
+    padding: 0.2rem 1.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+ 
+    text-align: center;
+}
+
+.list__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 60%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.list__container .active {
+    background-color: #003b4d;
+    color: #fff
+}
+.list__container p:hover {
+    background-color: #003b4d;
+    color: #fff;
+    transition: .25s all ease-in-out;
+}
+.fancybox-thumbs__list a:before{
+    border:3px solid #003b4d;
+}
+.info__top{
+    background-color: #003b4d;;
+}
+@media only screen and (max-width: 1000px){
+  .fancybox__inner{
+      display: block;
+      
+  }
+  .fancy__image__content{
+      width: 70%;
+      margin: 1rem auto;
+  }
+}
+@media only screen and (max-width: 600px){
+     .fancy__image__content{
+      width: 80%;
+      
+  }
+  .floor__title{
+      font-size: 30px;
+  }
+}
+
+</style>
+
+
+<script>
+$('[data-fancybox="images"]').fancybox({
+    baseClass: 'myFancyBox',
+    thumbs: {
+        autoStart: true,
+        axis: 'x'
+    }
+})
+
+jQuery(document).ready(function($) {
+    $('.rs__list').click(function() {
+
+        const value = $(this).attr('data-filter');
+
+        if (value == 'all') {
+            $('.fancy__image__content').show('1000')
+        } else {
+            $('.fancy__image__content').not('.' + value).hide('1000');
+            $('.fancy__image__content').filter('.' + value).show('1000');
+        }
+    })
+
+    $('.rs__list').click(function() {
+        $(this).addClass('active').siblings().removeClass('active')
+    })
+
+})
+</script>
+
+<?php
+
+get_footer();
+
+
+
+//https://cdn.struxure.com/wp-content/uploads/2022/06/timb.png
+//https://cdn.struxure.com/wp-content/uploads/2022/06/azbg.png
